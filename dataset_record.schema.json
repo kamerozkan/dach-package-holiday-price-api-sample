@@ -1,0 +1,519 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/kamerozkan/dach-package-holiday-price-api-sample/dataset_record.schema.json",
+  "title": "DACH Package Holiday Price API sample dataset record",
+  "description": "Core contract for privacy-minimized sample projections. Full Actor rows include additional documented fields.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/offer"
+    },
+    {
+      "$ref": "#/$defs/comparison"
+    },
+    {
+      "$ref": "#/$defs/airportMatrix"
+    },
+    {
+      "$ref": "#/$defs/priceSeries"
+    },
+    {
+      "$ref": "#/$defs/marketSignal"
+    },
+    {
+      "$ref": "#/$defs/buyWaitForecast"
+    },
+    {
+      "$ref": "#/$defs/alertDelivery"
+    },
+    {
+      "$ref": "#/$defs/runDiagnostic"
+    }
+  ],
+  "$defs": {
+    "nullableNumber": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "money": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ]
+    },
+    "hotel": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "giataId": {
+          "type": "integer"
+        },
+        "operatorHotelId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "location": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "city": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "region": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "country": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "countryCode": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "travel": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "searchWindowStart": {
+          "type": "string",
+          "format": "date"
+        },
+        "searchWindowEnd": {
+          "type": "string",
+          "format": "date"
+        },
+        "departureDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "returnDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "nights": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "searchWindowStart",
+        "searchWindowEnd"
+      ]
+    },
+    "offer": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "recordType": {
+          "const": "offer"
+        },
+        "operator": {
+          "enum": [
+            "tui",
+            "dertour",
+            "weg",
+            "aidu",
+            "alltours"
+          ]
+        },
+        "tourOperator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dachEntityId": {
+          "type": "string"
+        },
+        "hotel": {
+          "$ref": "#/$defs/hotel"
+        },
+        "travel": {
+          "$ref": "#/$defs/travel"
+        },
+        "departureAirport": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "iata": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "requested": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{3}$"
+              }
+            },
+            "source": {
+              "enum": [
+                "offer",
+                "requested",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "requested"
+          ]
+        },
+        "price": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "total": {
+              "$ref": "#/$defs/money"
+            },
+            "originalTotal": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/money"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "savingPercent": {
+              "$ref": "#/$defs/nullableNumber"
+            },
+            "completeness": {
+              "enum": [
+                "complete",
+                "known_exclusions",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "total"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "observedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      },
+      "required": [
+        "recordType",
+        "operator",
+        "dachEntityId",
+        "hotel",
+        "travel",
+        "departureAirport"
+      ]
+    },
+    "comparison": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "recordType": {
+          "const": "comparison"
+        },
+        "dachEntityId": {
+          "type": "string"
+        },
+        "comparisonBasis": {
+          "enum": [
+            "lowest_offer_in_search_window",
+            "like_for_like_package"
+          ]
+        },
+        "hotel": {
+          "$ref": "#/$defs/hotel"
+        },
+        "travel": {
+          "$ref": "#/$defs/travel"
+        },
+        "offers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/offer"
+          }
+        },
+        "cheapestOperator": {
+          "enum": [
+            "tui",
+            "dertour",
+            "weg",
+            "aidu",
+            "alltours"
+          ]
+        },
+        "cheapestTotalPrice": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "recordType",
+        "dachEntityId",
+        "comparisonBasis",
+        "hotel",
+        "travel",
+        "offers",
+        "cheapestOperator",
+        "cheapestTotalPrice",
+        "currency",
+        "observedAt"
+      ]
+    },
+    "airportMatrix": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "recordType": {
+          "const": "airport_matrix"
+        },
+        "dachEntityId": {
+          "type": "string"
+        },
+        "requestedAirports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "airports": {
+          "type": "array"
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "recordType",
+        "dachEntityId",
+        "requestedAirports",
+        "airports",
+        "observedAt"
+      ]
+    },
+    "priceSeries": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "recordType": {
+          "const": "price_series"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "dachEntityId": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "evidenceCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "points": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "recordType",
+        "operator",
+        "dachEntityId",
+        "currency",
+        "evidenceCount",
+        "points"
+      ]
+    },
+    "marketSignal": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "recordType": {
+          "const": "market_signal"
+        },
+        "dachEntityId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "object"
+        },
+        "evidence": {
+          "type": "object"
+        },
+        "disclaimer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recordType",
+        "dachEntityId",
+        "status",
+        "confidence",
+        "evidence",
+        "disclaimer"
+      ]
+    },
+    "buyWaitForecast": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "recordType": {
+          "const": "buy_wait_forecast"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "dachEntityId": {
+          "type": "string"
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "level": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "score",
+            "level"
+          ]
+        },
+        "evidence": {
+          "type": "object"
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "disclaimer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recordType",
+        "operator",
+        "dachEntityId",
+        "recommendation",
+        "confidence",
+        "evidence",
+        "generatedAt",
+        "disclaimer"
+      ]
+    },
+    "alertDelivery": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "recordType": {
+          "const": "alert_delivery"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recordType",
+        "status"
+      ]
+    },
+    "runDiagnostic": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "recordType": {
+          "const": "run_diagnostic"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recordType",
+        "status",
+        "message"
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "recordType": "offer",
+  "operator": "tui",
+  "tourOperator": null,
+  "dachEntityId": "giata:631077",
+  "hotel": {
+    "name": "Ersoy Aga Otel",
+    "category": 2,
+    "location": {
+      "city": "Antalya",
+      "countryCode": "TR"
+    }
+  },
+  "travel": {
+    "searchWindowStart": "2026-09-22",
+    "searchWindowEnd": "2026-10-06",
+    "departureDate": "2026-09-24",
+    "returnDate": "2026-10-01",
+    "nights": 7
+  },
+  "departureAirport": {
+    "requested": [
+      "BER"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "recordType": "buy_wait_forecast",
+  "forecastKey": "redacted-forecast-key-03",
+  "seriesKey": "redacted-series-key-03",
+  "offerKey": "redacted-offer-key-03",
+  "comparisonKey": "redacted-comparison-key-03",
+  "operator": "aidu",
+  "dachEntityId": "giata:631077",
+  "hotelName": "Ersoy Aga Otel",
+  "currency": "EUR",
+  "recommendation": "insufficient_data",
+  "confidence": {
+    "score": 0.1,
+    "level": "low"
+  },
+  "horizonDays": 7,
+  "currentPrice": 526,
+  "forecastPrice": 526,
+  "evidence": {
+    "observationCount": 2,
+    "robustTrendPerDay": 0,
+    "expectedChangePercent": 0,
+    "volatilityPercent": 0,
+    "daysToDeparture": 60,
+    "capacityNarrowingScore": null
+  },
+  "rationale": [
+    "2/3 required observations are available."
+  ],
+  "generatedAt": "2026-07-26T13:34:43.064Z",
+  "disclaimer": "Informational estimate only; prices and availability can change and this is not a booking guarantee."
+}

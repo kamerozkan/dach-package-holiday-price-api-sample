@@ -1,0 +1,20 @@
+{
+  "destination": "Antalya",
+  "startDate": "2026-09-24",
+  "endDate": "2026-10-15",
+  "nights": 7,
+  "adults": 2,
+  "childAges": [],
+  "departureAirports": [
+    "DUS"
+  ],
+  "operators": [
+    "weg",
+    "aidu"
+  ],
+  "outputMode": "offers",
+  "comparisonMode": "lowest_offer_in_search_window",
+  "maxResultsPerOperator": 3,
+  "sort": "priceAsc",
+  "includeRaw": false
+}

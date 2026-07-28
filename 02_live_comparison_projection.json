@@ -1,0 +1,140 @@
+{
+  "recordType": "comparison",
+  "dachEntityId": "giata:631077",
+  "comparisonKey": "redacted-comparison-key-02",
+  "comparisonBasis": "like_for_like_package",
+  "hotel": {
+    "name": "Ersoy Aga Otel",
+    "category": 2,
+    "location": {
+      "city": "Antalya",
+      "region": "Türkische Riviera",
+      "country": "Türkei",
+      "countryCode": "TR"
+    }
+  },
+  "travel": {
+    "searchWindowStart": "2026-09-24",
+    "searchWindowEnd": "2026-10-15"
+  },
+  "offers": [
+    {
+      "recordType": "offer",
+      "operator": "aidu",
+      "operatorLabel": "ab-in-den-urlaub.de",
+      "tourOperator": null,
+      "dachEntityId": "giata:631077",
+      "hotel": {
+        "name": "Ersoy Aga Otel",
+        "category": 2,
+        "location": {
+          "city": "Antalya",
+          "region": "Türkische Riviera",
+          "country": "Türkei",
+          "countryCode": "TR"
+        }
+      },
+      "travel": {
+        "searchWindowStart": "2026-09-24",
+        "searchWindowEnd": "2026-10-15",
+        "departureDate": "2026-09-24",
+        "returnDate": "2026-10-01",
+        "nights": 7
+      },
+      "occupancy": {
+        "adults": 2,
+        "childAges": []
+      },
+      "departureAirport": {
+        "iata": "DUS",
+        "requested": [
+          "DUS"
+        ],
+        "source": "requested"
+      },
+      "room": {
+        "name": "Doppelzimmer MIT GEMEINSCHAFTSBAD"
+      },
+      "board": {
+        "name": "Ohne Verpflegung"
+      },
+      "flight": null,
+      "transfer": {
+        "included": null,
+        "optionalPrice": null,
+        "evidence": "unavailable"
+      },
+      "availability": {
+        "status": "available"
+      },
+      "discounts": [
+        {
+          "type": "price_reduction",
+          "label": "ab-in-den-urlaub.de displayed price reduction",
+          "amount": 306,
+          "percent": 36.8
+        },
+        {
+          "type": "campaign",
+          "label": "Cashback voucher (conditional)",
+          "amount": 25,
+          "percent": null
+        }
+      ],
+      "price": {
+        "total": {
+          "amount": 526,
+          "currency": "EUR"
+        },
+        "originalTotal": {
+          "amount": 832,
+          "currency": "EUR"
+        },
+        "savingPercent": 36.8,
+        "taxesIncluded": null,
+        "mandatoryFees": [],
+        "completeness": "unknown"
+      },
+      "source": {
+        "url": "https://www.ab-in-den-urlaub.de/",
+        "observedAt": "2026-07-26T13:34:40.178Z",
+        "destination": {
+          "id": "city-tr-930-antalya",
+          "name": "Antalya",
+          "type": "city",
+          "parentName": "Mittelmeerregion"
+        }
+      },
+      "matching": {
+        "departureDate": "exact",
+        "nights": "exact",
+        "occupancy": "exact",
+        "departureAirport": "requested",
+        "room": "normalized",
+        "board": "normalized",
+        "roomClass": "double",
+        "boardClass": "room_only"
+      }
+    }
+  ],
+  "cheapestOperator": "aidu",
+  "cheapestTotalPrice": 526,
+  "currency": "EUR",
+  "priceSpread": null,
+  "matchQuality": {
+    "score": 0.92,
+    "likeForLike": true,
+    "dimensions": {
+      "hotel": "exact",
+      "departureDate": "exact",
+      "nights": "exact",
+      "occupancy": "exact",
+      "departureAirport": "requested",
+      "room": "normalized",
+      "board": "normalized"
+    },
+    "unavailableDimensions": [],
+    "mixedDimensions": []
+  },
+  "observedAt": "2026-07-26T13:34:40.178Z"
+}

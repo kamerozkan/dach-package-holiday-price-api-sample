@@ -1,0 +1,47 @@
+{
+  "destination": "Antalya",
+  "startDate": "2026-09-24",
+  "endDate": "2026-10-15",
+  "nights": 7,
+  "adults": 2,
+  "childAges": [],
+  "departureAirports": [
+    "DUS",
+    "MUC"
+  ],
+  "operators": [
+    "aidu",
+    "alltours"
+  ],
+  "outputMode": "comparisons",
+  "comparisonMode": "like_for_like_package",
+  "maxResultsPerOperator": 2,
+  "sort": "priceAsc",
+  "includeRaw": false,
+  "history": {
+    "enabled": true,
+    "storeName": "feature-history",
+    "retentionDays": 90,
+    "observationIntervalHours": 24,
+    "emitSeries": true
+  },
+  "airportMatrix": {
+    "enabled": true,
+    "maxAirports": 4,
+    "concurrency": 2,
+    "requestBudget": 10,
+    "emitRows": true
+  },
+  "signals": {
+    "enabled": true,
+    "minimumSnapshots": 3,
+    "evidenceWindowDays": 14,
+    "emitRows": true
+  },
+  "forecast": {
+    "enabled": true,
+    "minimumObservations": 3,
+    "horizonDays": 7,
+    "emitRows": true
+  }
+}

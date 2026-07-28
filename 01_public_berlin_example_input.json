@@ -1,0 +1,10 @@
+{
+  "departureAirports": [
+    "BER"
+  ],
+  "destination": "Antalya",
+  "endDate": "10 weeks",
+  "includeRaw": false,
+  "maxResultsPerOperator": 1,
+  "startDate": "8 weeks"
+}
