@@ -3,7 +3,7 @@
 # DACH Package Holiday Price API: Samples and JSON Schema
 
 [![Apify Actor](https://img.shields.io/badge/Apify-Run%20Actor-00c7b7?logo=apify)](https://apify.com/kamerozkan/dach-package-holiday-price-api)
-![Latest build](https://img.shields.io/badge/audit_build-1.0.17%20SUCCEEDED-2f855a)
+![Latest build](https://img.shields.io/badge/audit_build-1.0.22%20SUCCEEDED-2f855a)
 ![JSON Schema](https://img.shields.io/badge/schema-JSON%20Schema%202020--12-4c1)
 ![Samples](https://img.shields.io/badge/samples-live%2C%20redacted%2C%20validated-2f855a)
 ![License](https://img.shields.io/badge/license-MIT-blue)
@@ -19,7 +19,12 @@ This repository contains three runnable inputs, three privacy-minimized real out
 3. Keep the first run small and inspect source health, data quality, and billing.
 4. Treat every price and availability field as a point-in-time observation.
 
-At the 2026-07-28 audit, the Store exposed **one public Example Task**. Input 01 is its exact input. Inputs 02 and 03 are exact fixed-date release-QA inputs and are clearly labeled as replay material.
+At the 2026-08-02 audit, the Store exposed **one public Example Task**. Input 01 is its exact input. Inputs 02 and 03 are exact fixed-date release-QA inputs and are clearly labeled as replay material.
+
+The current production build `1.0.22` passed an all-source smoke run on
+2026-08-02. It returned one offer from each of the five sources with zero
+residential proxy transfer. See [`DATA_NOTICE.md`](DATA_NOTICE.md) for the exact
+run, dataset, and cost evidence.
 
 ## Input examples
 

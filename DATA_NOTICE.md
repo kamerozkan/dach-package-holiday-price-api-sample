@@ -8,20 +8,26 @@ It is not a booking service, a continuous real-time feed, a complete travel mark
 
 ## Audit snapshot
 
-The following state was verified through the Apify API, public Store page, and authenticated owner console on 2026-07-28:
+The following state was verified through the Apify API, public Store page, and authenticated owner console on 2026-08-02:
 
 | Item | Verified value |
 |---|---|
 | Actor | `kamerozkan/dach-package-holiday-price-api` |
 | Actor ID | `wgrg8RIdKtTl3x5UT` |
 | Public | `true` |
-| Current latest build | `1.0.17`, build ID `feNolI1qjKuod6aia`, status `SUCCEEDED` |
+| Current latest build | `1.0.22`, build ID `2hfZOaf719zUgwxZP`, status `SUCCEEDED` |
 | Public Store Example Tasks | 1 |
 | Public Example Task | `XzYQCBdhxElKX9CMM`, `Compare package holidays from Berlin`, 23 runs |
-| Latest successful public task run | `QkVcaNfb3ChTziVgN`, build `1.0.14` |
-| Public task dataset | `ozxjz9utd0IHgwj9l`, 5 records |
+| Latest audited all-source production run | `ueu2SsXobLxfIMEBD`, build `1.0.22`, status `SUCCEEDED` |
+| Audited production dataset | `5Dlf6DhFpC6bo0Bbl`, 5 offer records, one per source |
+| Audited production platform usage | `$0.0038812873`, residential proxy transfer `0 GB` |
+| Historical public task dataset | `ozxjz9utd0IHgwj9l`, 5 records |
 
-The inspected public task run used build `1.0.14`. The current `1.0.17` build completed successfully after that run, so this repository does not claim runtime validation of `1.0.17`.
+The production smoke used the public `latest` tag and Actor version `1.0`, both
+resolved to build `1.0.22`. All five source-health entries were healthy and the
+run reported no source errors. The historical output projection below remains
+anchored to the earlier public Example Task dataset and is not relabeled as
+output from the production smoke.
 
 ## Input provenance
 
