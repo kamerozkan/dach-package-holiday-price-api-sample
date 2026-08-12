@@ -1,0 +1,41 @@
+{
+  "destination": "Antalya",
+  "startDate": "8 weeks",
+  "endDate": "10 weeks",
+  "departureAirports": [
+    "DUS"
+  ],
+  "operators": [
+    "tui"
+  ],
+  "outputMode": "offers",
+  "comparisonMode": "lowest_offer_in_search_window",
+  "maxResultsPerOperator": 1,
+  "sort": "priceAsc",
+  "includeRaw": false,
+  "history": {
+    "enabled": true,
+    "storeName": "example-antalya-package-price-history",
+    "retentionDays": 90,
+    "observationIntervalHours": 24,
+    "emitSeries": true
+  },
+  "enrichment": {
+    "enabled": false
+  },
+  "airportMatrix": {
+    "enabled": false
+  },
+  "signals": {
+    "enabled": false
+  },
+  "forecast": {
+    "enabled": false
+  },
+  "alerts": {
+    "enabled": false
+  },
+  "proxyConfiguration": {
+    "useApifyProxy": false
+  }
+}

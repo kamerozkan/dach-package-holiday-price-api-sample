@@ -1,0 +1,41 @@
+{
+  "destination": "Antalya",
+  "startDate": "8 weeks",
+  "endDate": "10 weeks",
+  "departureAirports": [
+    "MUC"
+  ],
+  "operators": [
+    "tui",
+    "dertour",
+    "weg",
+    "aidu",
+    "alltours"
+  ],
+  "outputMode": "comparisons",
+  "comparisonMode": "lowest_offer_in_search_window",
+  "maxResultsPerOperator": 1,
+  "sort": "priceAsc",
+  "includeRaw": false,
+  "history": {
+    "enabled": false
+  },
+  "enrichment": {
+    "enabled": false
+  },
+  "airportMatrix": {
+    "enabled": false
+  },
+  "signals": {
+    "enabled": false
+  },
+  "forecast": {
+    "enabled": false
+  },
+  "alerts": {
+    "enabled": false
+  },
+  "proxyConfiguration": {
+    "useApifyProxy": false
+  }
+}

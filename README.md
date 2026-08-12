@@ -3,33 +3,43 @@
 # DACH Package Holiday Price API: Samples and JSON Schema
 
 [![Apify Actor](https://img.shields.io/badge/Apify-Run%20Actor-00c7b7?logo=apify)](https://apify.com/kamerozkan/dach-package-holiday-price-api)
-![Latest build](https://img.shields.io/badge/audit_build-1.0.22%20SUCCEEDED-2f855a)
+![Latest build](https://img.shields.io/badge/audit_build-1.0.23%20SUCCEEDED-2f855a)
 ![JSON Schema](https://img.shields.io/badge/schema-JSON%20Schema%202020--12-4c1)
 ![Samples](https://img.shields.io/badge/samples-live%2C%20redacted%2C%20validated-2f855a)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 Compare Pauschalreise and package holiday offers across TUI, DERTOUR, weg.de, ab-in-den-urlaub.de, and alltours in one normalized dataset. The Actor exposes GIATA hotel identity, departure-airport context, like-for-like comparison fields, price history, market signals, and conservative buy or wait forecasts.
 
-This repository contains three runnable inputs, three privacy-minimized real output projections, and the sample row contract in [`dataset_record.schema.json`](dataset_record.schema.json).
+This repository contains the three current public Store Example Task inputs,
+two historical release-QA inputs, three privacy-minimized real output
+projections, machine-readable 1.0.23 release evidence, and the sample row
+contract in [`dataset_record.schema.json`](dataset_record.schema.json).
 
 ## Start here
 
 1. Open the [Actor on Apify](https://apify.com/kamerozkan/dach-package-holiday-price-api).
-2. Copy the public Example Task input below.
+2. Choose one of the three public Example Task inputs below.
 3. Keep the first run small and inspect source health, data quality, and billing.
 4. Treat every price and availability field as a point-in-time observation.
 
-At the 2026-08-02 audit, the Store exposed **one public Example Task**. Input 01 is its exact input. Inputs 02 and 03 are exact fixed-date release-QA inputs and are clearly labeled as replay material.
+At the 2026-08-13 verification, the Store exposed **three public Example
+Tasks**. Inputs 01, 02, and 03 are their exact inputs and use rolling dates.
 
-The current production build `1.0.22` passed an all-source smoke run on
-2026-08-02. It returned one offer from each of the five sources with zero
-residential proxy transfer. See [`DATA_NOTICE.md`](DATA_NOTICE.md) for the exact
-run, dataset, and cost evidence.
+The current production build `1.0.23` passed an all-source comparison smoke.
+All five selected sources were healthy, including the recovered alltours
+adapter, and the Actor wrote three comparison rows from five normalized offers.
+Two isolated history runs also proved that the first observation generated one
+`history-update` charge while the unchanged repeat generated none. See
+[`release_1_0_23_evidence.json`](release_1_0_23_evidence.json) and
+[`DATA_NOTICE.md`](DATA_NOTICE.md) for the exact run, dataset, and billing
+evidence.
 
 ## Input examples
 
 <details>
 <summary><strong>01. Compare package holidays from Berlin</strong> - exact public Store Example Task</summary>
+
+Store slug: `compare-package-holidays-from-berlin`
 
 [`01_public_berlin_example_input.json`](01_public_berlin_example_input.json)
 
@@ -49,93 +59,118 @@ run, dataset, and cost evidence.
 </details>
 
 <details>
-<summary><strong>02. Two-source offer QA</strong> - exact historical live-source replay input</summary>
+<summary><strong>02. Compare operators for Antalya</strong> - exact public Store Example Task</summary>
 
-[`02_live_offer_qa_input.json`](02_live_offer_qa_input.json)
+Store slug: `compare-operators-for-antalya`
 
-```json
-{
-  "destination": "Antalya",
-  "startDate": "2026-09-24",
-  "endDate": "2026-10-15",
-  "nights": 7,
-  "adults": 2,
-  "childAges": [],
-  "departureAirports": [
-    "DUS"
-  ],
-  "operators": [
-    "weg",
-    "aidu"
-  ],
-  "outputMode": "offers",
-  "comparisonMode": "lowest_offer_in_search_window",
-  "maxResultsPerOperator": 3,
-  "sort": "priceAsc",
-  "includeRaw": false
-}
-```
-
-The fixed dates reproduce audited QA configuration. Replace them with a valid future window before reuse.
-
-</details>
-
-<details>
-<summary><strong>03. Like-for-like comparison and forecast QA</strong> - exact historical live-source replay input</summary>
-
-[`03_comparison_forecast_qa_input.json`](03_comparison_forecast_qa_input.json)
+[`02_public_compare_operators_antalya_input.json`](02_public_compare_operators_antalya_input.json)
 
 ```json
 {
   "destination": "Antalya",
-  "startDate": "2026-09-24",
-  "endDate": "2026-10-15",
-  "nights": 7,
-  "adults": 2,
-  "childAges": [],
+  "startDate": "8 weeks",
+  "endDate": "10 weeks",
   "departureAirports": [
-    "DUS",
     "MUC"
   ],
   "operators": [
+    "tui",
+    "dertour",
+    "weg",
     "aidu",
     "alltours"
   ],
   "outputMode": "comparisons",
-  "comparisonMode": "like_for_like_package",
-  "maxResultsPerOperator": 2,
+  "comparisonMode": "lowest_offer_in_search_window",
+  "maxResultsPerOperator": 1,
   "sort": "priceAsc",
   "includeRaw": false,
   "history": {
-    "enabled": true,
-    "storeName": "feature-history",
-    "retentionDays": 90,
-    "observationIntervalHours": 24,
-    "emitSeries": true
+    "enabled": false
+  },
+  "enrichment": {
+    "enabled": false
   },
   "airportMatrix": {
-    "enabled": true,
-    "maxAirports": 4,
-    "concurrency": 2,
-    "requestBudget": 10,
-    "emitRows": true
+    "enabled": false
   },
   "signals": {
-    "enabled": true,
-    "minimumSnapshots": 3,
-    "evidenceWindowDays": 14,
-    "emitRows": true
+    "enabled": false
   },
   "forecast": {
-    "enabled": true,
-    "minimumObservations": 3,
-    "horizonDays": 7,
-    "emitRows": true
+    "enabled": false
+  },
+  "alerts": {
+    "enabled": false
+  },
+  "proxyConfiguration": {
+    "useApifyProxy": false
   }
 }
 ```
 
 </details>
+
+<details>
+<summary><strong>03. Track Antalya package prices</strong> - exact public Store Example Task</summary>
+
+Store slug: `track-antalya-package-prices`
+
+[`03_public_track_antalya_prices_input.json`](03_public_track_antalya_prices_input.json)
+
+```json
+{
+  "destination": "Antalya",
+  "startDate": "8 weeks",
+  "endDate": "10 weeks",
+  "departureAirports": [
+    "DUS"
+  ],
+  "operators": [
+    "tui"
+  ],
+  "outputMode": "offers",
+  "comparisonMode": "lowest_offer_in_search_window",
+  "maxResultsPerOperator": 1,
+  "sort": "priceAsc",
+  "includeRaw": false,
+  "history": {
+    "enabled": true,
+    "storeName": "example-antalya-package-price-history",
+    "retentionDays": 90,
+    "observationIntervalHours": 24,
+    "emitSeries": true
+  },
+  "enrichment": {
+    "enabled": false
+  },
+  "airportMatrix": {
+    "enabled": false
+  },
+  "signals": {
+    "enabled": false
+  },
+  "forecast": {
+    "enabled": false
+  },
+  "alerts": {
+    "enabled": false
+  },
+  "proxyConfiguration": {
+    "useApifyProxy": false
+  }
+}
+```
+
+</details>
+
+### Historical release-QA replay inputs
+
+[`02_live_offer_qa_input.json`](02_live_offer_qa_input.json) and
+[`03_comparison_forecast_qa_input.json`](03_comparison_forecast_qa_input.json)
+preserve the exact fixed-date inputs used for the earlier output projections.
+Their dates can expire; use rolling dates or a valid future window before
+replaying them.
 
 ## Output examples
 

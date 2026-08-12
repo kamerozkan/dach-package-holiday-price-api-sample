@@ -2,40 +2,70 @@
 
 ## Purpose
 
-This repository is a technical sample for the [DACH Package Holiday Price API Actor](https://apify.com/kamerozkan/dach-package-holiday-price-api). It demonstrates one exact public Example Task input, two exact release-QA inputs, and privacy-minimized output projections.
+This repository is a technical sample for the [DACH Package Holiday Price API Actor](https://apify.com/kamerozkan/dach-package-holiday-price-api). It demonstrates three exact public Example Task inputs, two historical release-QA inputs, privacy-minimized output projections, and machine-readable release evidence.
 
 It is not a booking service, a continuous real-time feed, a complete travel market, or a price guarantee.
 
 ## Audit snapshot
 
-The following state was verified through the Apify API, public Store page, and authenticated owner console on 2026-08-02:
+The following state was verified through the Apify API and authenticated owner
+endpoints on 2026-08-13:
 
 | Item | Verified value |
 |---|---|
 | Actor | `kamerozkan/dach-package-holiday-price-api` |
 | Actor ID | `wgrg8RIdKtTl3x5UT` |
 | Public | `true` |
-| Current latest build | `1.0.22`, build ID `2hfZOaf719zUgwxZP`, status `SUCCEEDED` |
-| Public Store Example Tasks | 1 |
-| Public Example Task | `XzYQCBdhxElKX9CMM`, `Compare package holidays from Berlin`, 23 runs |
-| Latest audited all-source production run | `ueu2SsXobLxfIMEBD`, build `1.0.22`, status `SUCCEEDED` |
-| Audited production dataset | `5Dlf6DhFpC6bo0Bbl`, 5 offer records, one per source |
-| Audited production platform usage | `$0.0038812873`, residential proxy transfer `0 GB` |
+| Current latest build | `1.0.23`, build ID `cizRcopUm0qBzQUXu`, status `SUCCEEDED` |
+| Public Store Example Tasks | 3 |
+| Public Example 01 | `XzYQCBdhxElKX9CMM`, `Compare package holidays from Berlin`, slug `compare-package-holidays-from-berlin` |
+| Public Example 02 | `1rqXwfhCgJoX6FH19`, `Compare operators for Antalya`, slug `compare-operators-for-antalya` |
+| Public Example 03 | `9TDKk28CP93rgNIKu`, `Track Antalya package prices`, slug `track-antalya-package-prices` |
+| All-source comparison run | `0q9ttJ7ElPherf6jO`, build `1.0.23`, status `SUCCEEDED` |
+| All-source comparison dataset | `oQqXStmQOy6GsawC6`, 3 comparison records from 5 normalized offers |
+| All-source comparison platform usage | `$0.003667124558659063` |
+| History first run | `X4LBeSIv76YtWKBLA`, 1 new observation, 1 price series, 1 `history-update` event |
+| History repeat run | `A5ar96UKEWIwExIZU`, 0 new observations, 0 price series, 0 `history-update` events |
 | Historical public task dataset | `ozxjz9utd0IHgwj9l`, 5 records |
 
-The production smoke used the public `latest` tag and Actor version `1.0`, both
-resolved to build `1.0.22`. All five source-health entries were healthy and the
-run reported no source errors. The historical output projection below remains
-anchored to the earlier public Example Task dataset and is not relabeled as
-output from the production smoke.
+Both `latest` and `beta` resolved to build `1.0.23` at verification time. All
+five source-health entries in the comparison smoke were healthy and the run
+reported no errors. The recovered alltours source reported 300 available
+packages and returned one normalized offer. The historical output projections
+below remain anchored to their earlier datasets and are not relabeled as output
+from the 1.0.23 smokes.
 
 ## Input provenance
 
-- [`01_public_berlin_example_input.json`](01_public_berlin_example_input.json) is the exact input exposed by the sole public Store Example Task.
-- [`02_live_offer_qa_input.json`](02_live_offer_qa_input.json) is the exact fixed-date input from a live-source release-QA run completed on 2026-07-26. It is historical replay material, not a second public Store example.
-- [`03_comparison_forecast_qa_input.json`](03_comparison_forecast_qa_input.json) is the exact fixed-date input from a separate live-source feature-QA run completed on 2026-07-26. It is historical replay material, not a public Store example.
+- [`01_public_berlin_example_input.json`](01_public_berlin_example_input.json) is the exact input exposed by `Compare package holidays from Berlin`.
+- [`02_public_compare_operators_antalya_input.json`](02_public_compare_operators_antalya_input.json) is the exact input exposed by `Compare operators for Antalya`.
+- [`03_public_track_antalya_prices_input.json`](03_public_track_antalya_prices_input.json) is the exact input exposed by `Track Antalya package prices`.
+- [`02_live_offer_qa_input.json`](02_live_offer_qa_input.json) is the exact fixed-date input from a live-source release-QA run completed on 2026-07-26. It remains historical replay material.
+- [`03_comparison_forecast_qa_input.json`](03_comparison_forecast_qa_input.json) is the exact fixed-date input from a separate live-source feature-QA run completed on 2026-07-26. It remains historical replay material.
 
-Fixed dates can expire. For a new run, replace them with valid absolute dates or rolling values such as `8 weeks` and `10 weeks`.
+The three public examples use rolling dates. Fixed dates in the historical
+replay inputs can expire; replace them with valid absolute dates or rolling
+values such as `8 weeks` and `10 weeks` before reuse.
+
+## Release 1.0.23 evidence
+
+[`release_1_0_23_evidence.json`](release_1_0_23_evidence.json) is a
+privacy-minimized projection of the verified build, public Examples, comparison
+smoke, and history-deduplication smokes. It contains identifiers and aggregate
+counts needed to audit these claims, not raw source payloads or credentials.
+
+Run `0q9ttJ7ElPherf6jO` exercised TUI, DERTOUR, weg.de,
+ab-in-den-urlaub.de, and alltours with the exact comparison Example input. It
+found five offers, wrote three comparison records, reported five healthy
+sources, and reported zero errors. This verifies that alltours was producing
+normalized output again on build 1.0.23.
+
+Runs `X4LBeSIv76YtWKBLA` and `A5ar96UKEWIwExIZU` reused one isolated history
+store with the exact same offer input. The first run inserted one observation,
+emitted one price-series row, and charged one `history-update` event. The repeat
+run inserted no observation, emitted no duplicate price-series row, and charged
+zero `history-update` events. The normal source-search and offer events still
+applied to both runs.
 
 ## Output provenance
 
@@ -84,7 +114,12 @@ The documented source set is TUI Germany, DERTOUR Germany, weg.de, ab-in-den-url
 
 ## Pricing snapshot
 
-At the audit date, the Store headline started at `$0.70 / 1,000 package offers`. A run could also charge named events for successful source searches and optional comparison, history, airport-matrix, signal, forecast, enrichment, and alert work. The public Example Task selected five sources, so the headline offer price alone was not the complete possible run charge.
+At the verification date, package-offer pricing was tiered from `$0.70` to
+`$1.00` per 1,000 offers by plan. A run could also charge named events for
+successful source searches and optional comparison, history, airport-matrix,
+signal, forecast, enrichment, and alert work. The five-source comparison Example
+therefore costs more than the package-offer headline alone. Its maximum run
+charge was set to `$0.10`; the history Example was capped at `$0.02`.
 
 Pricing changes over time. Review the Actor's current Pricing tab and set a maximum cost per run before increasing source, result, or airport-matrix limits.
 

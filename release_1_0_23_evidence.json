@@ -1,0 +1,70 @@
+{
+  "verifiedOn": "2026-08-13",
+  "actor": {
+    "id": "wgrg8RIdKtTl3x5UT",
+    "name": "kamerozkan/dach-package-holiday-price-api",
+    "version": "1.0.23",
+    "buildId": "cizRcopUm0qBzQUXu",
+    "buildStatus": "SUCCEEDED"
+  },
+  "publicExamples": [
+    {
+      "id": "XzYQCBdhxElKX9CMM",
+      "title": "Compare package holidays from Berlin",
+      "slug": "compare-package-holidays-from-berlin"
+    },
+    {
+      "id": "1rqXwfhCgJoX6FH19",
+      "title": "Compare operators for Antalya",
+      "slug": "compare-operators-for-antalya"
+    },
+    {
+      "id": "9TDKk28CP93rgNIKu",
+      "title": "Track Antalya package prices",
+      "slug": "track-antalya-package-prices"
+    }
+  ],
+  "allSourceComparison": {
+    "runId": "0q9ttJ7ElPherf6jO",
+    "datasetId": "oQqXStmQOy6GsawC6",
+    "status": "SUCCEEDED",
+    "version": "1.0.23",
+    "recordsWritten": 3,
+    "offersFound": 5,
+    "comparableHotels": 1,
+    "healthySources": 5,
+    "errors": 0,
+    "alltours": {
+      "totalAvailable": 300,
+      "offersReturned": 1,
+      "status": "healthy"
+    },
+    "chargedEvents": {
+      "successful-source-search": 5,
+      "comparison-emitted": 3
+    },
+    "platformUsageUsd": 0.003667124558659063
+  },
+  "historyDeduplication": {
+    "firstRun": {
+      "runId": "X4LBeSIv76YtWKBLA",
+      "datasetId": "GbANXiMJtxZJEIMeJ",
+      "status": "SUCCEEDED",
+      "datasetRecords": 2,
+      "historyObservationsInserted": 1,
+      "priceSeriesEmitted": 1,
+      "historyUpdateEventsCharged": 1,
+      "platformUsageUsd": 0.0035896540787451795
+    },
+    "repeatRun": {
+      "runId": "A5ar96UKEWIwExIZU",
+      "datasetId": "rZVcCnxCwD9rPbdEx",
+      "status": "SUCCEEDED",
+      "datasetRecords": 1,
+      "historyObservationsInserted": 0,
+      "priceSeriesEmitted": 0,
+      "historyUpdateEventsCharged": 0,
+      "platformUsageUsd": 0.0030543146971844966
+    }
+  }
+}
