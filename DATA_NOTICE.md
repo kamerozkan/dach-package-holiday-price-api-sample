@@ -124,3 +124,7 @@ charge was set to `$0.10`; the history Example was capped at `$0.02`.
 Pricing changes over time. Review the Actor's current Pricing tab and set a maximum cost per run before increasing source, result, or airport-matrix limits.
 
 Users are responsible for lawful, proportionate use and compliance with applicable site terms, robots policies, database rights, privacy law, retention rules, and contractual restrictions.
+
+## Listing update on September 30, 2026
+
+The Store title, description and search metadata were checked against the owned Actor and synchronized with this repository. This documentation update does not alter executable code, input or output schemas, recorded test outputs, artifact hashes, billing or runtime builds. Existing examples retain their original dates and validation limits. A public listing is not evidence of successful output, network acceptance or an achieved search ranking.

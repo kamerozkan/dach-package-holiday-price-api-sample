@@ -1,0 +1,15 @@
+{
+  "id": "wgrg8RIdKtTl3x5UT",
+  "name": "dach-package-holiday-price-api",
+  "title": "Package Holiday Price Comparison - Pauschalreise, TUI, DERTOUR",
+  "description": "Compare Pauschalreise offers and package holiday prices across five German sources (TUI, DERTOUR, weg.de, ab-in-den-urlaub.de, alltours) in one normalized dataset: GIATA hotel matching, airport matrix, 90-day price history, market signals, buy-or-wait forecasts and signed price-drop webhook alerts.",
+  "seoTitle": "Pauschalreise Price Comparison - TUI & DERTOUR API",
+  "seoDescription": "Compare German package holiday prices across TUI, DERTOUR and three more sources. Match hotels, track price history and receive signed price-drop alerts.",
+  "isPublic": true,
+  "url": "https://apify.com/kamerozkan/dach-package-holiday-price-api",
+  "checkedAt": "2026-09-30",
+  "changeScope": "listing metadata and sample documentation only",
+  "runtimeChanged": false,
+  "schemasChanged": false,
+  "examplesRegenerated": false
+}

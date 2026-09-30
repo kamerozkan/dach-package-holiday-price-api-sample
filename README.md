@@ -1,6 +1,10 @@
 > **Live API:** [Run DACH Package Holiday Price API on Apify](https://apify.com/kamerozkan/dach-package-holiday-price-api)
 
-# DACH Package Holiday Price API: Samples and JSON Schema
+# Package Holiday Price Comparison - Pauschalreise, TUI, DERTOUR: Samples
+
+Compare Pauschalreise offers and package holiday prices across five German sources (TUI, DERTOUR, weg.de, ab-in-den-urlaub.de, alltours) in one normalized dataset: GIATA hotel matching, airport matrix, 90-day price history, market signals, buy-or-wait forecasts and signed price-drop webhook alerts.
+
+[Run Package Holiday Price Comparison - Pauschalreise, TUI, DERTOUR on Apify](https://apify.com/kamerozkan/dach-package-holiday-price-api)
 
 [![Apify Actor](https://img.shields.io/badge/Apify-Run%20Actor-00c7b7?logo=apify)](https://apify.com/kamerozkan/dach-package-holiday-price-api)
 ![Latest build](https://img.shields.io/badge/audit_build-1.0.23%20SUCCEEDED-2f855a)
