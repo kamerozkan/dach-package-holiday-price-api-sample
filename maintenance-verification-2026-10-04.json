@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-04",
+  "evidenceType": "offline maintenance validation plus separate cloud publication verification",
+  "publicationStatus": "public latest build and source hashes verified separately from offline tests",
+  "sourceReachability": "not tested by these offline checks",
+  "customerEffect": "not measured",
+  "newActorRuns": 0,
+  "sourceFixturesAdded": false,
+  "existingExamplesRegenerated": false,
+  "inputSchemaChanged": false,
+  "pricingChanged": false,
+  "networkTransportChanged": false,
+  "actorId": "wgrg8RIdKtTl3x5UT",
+  "baselineBuild": {
+    "number": "1.0.24",
+    "id": "JUeJLlNw22mJePs2Z"
+  },
+  "providers": [
+    "tui",
+    "dertour",
+    "weg",
+    "aidu",
+    "alltours"
+  ],
+  "authorTests": {
+    "passed": 92,
+    "failed": 0,
+    "scope": "synthetic price/calendar normalization and comparison controls"
+  },
+  "independentCheckGroups": {
+    "passed": 17,
+    "failed": 0,
+    "scope": "old/new behavior, healthy contract parity, optional money, zero and calendar controls"
+  },
+  "repairs": [
+    "Negative/nonfinite/nonnumeric required source totals are rejected.",
+    "Invalid optional monetary amounts become null while valid numeric zero remains.",
+    "Supplied malformed calendar days and return-before-departure dates reject affected offers; missing source dates remain null.",
+    "Invalid complete internal comparison records cannot defeat a valid zero-priced observation."
+  ],
+  "limits": [
+    "Validation checks a calendar-day prefix, not the complete timestamp time/timezone suffix.",
+    "Missing dates retain unknown match-quality semantics.",
+    "Comparison checks use complete internal NormalizedOffer records; arbitrary missing nested containers are outside the documented probe contract.",
+    "Offline normalized records do not prove live provider availability, booking prices or customer output."
+  ],
+  "candidateRuntimeSha256": {
+    "src/adapters/aidu.ts": "df9c5307ed338dd32439624e318bca68ad1ff0d4d159be5ae36d9ea26ba96627",
+    "src/adapters/alltours.ts": "2c664d0e9e0c009688cf0015a58fdd6995a2492a76a5aedc2136fea78e145f7e",
+    "src/adapters/dertour.ts": "f5bc39b057b29ce4eaa602479149f2da5572d969e8056167828fc1b148473d44",
+    "src/adapters/tui.ts": "a4465c1d59560ce85d7b00b1c08aaaf0dd6697248eb6736858552b247aba0f17",
+    "src/adapters/weg.ts": "bcadec8effdee024e24316e5619aea7aee3afa537de6129f0d9beb9751fe2dd1",
+    "src/comparisons.ts": "c09db0b4bd250fe85be53bdebe51dd254ce2e2125435eef8350390fd4ad1dfd5",
+    "src/utils.ts": "cc4634c379eb24d2f8746c3e2450f6bd87da8d341ac15fbe0abe589bc2e84b18"
+  },
+  "release": {
+    "build": {
+      "id": "9JKFZOpj5ssewuj93",
+      "buildNumber": "1.0.25",
+      "status": "SUCCEEDED",
+      "finishedAt": "2026-10-04T00:03:59.588Z"
+    },
+    "publicLatestVerified": true,
+    "allSourceHashesVerified": true,
+    "protectedMetadataUnchanged": true,
+    "envUnchanged": true,
+    "freshSourceOutputVerified": false,
+    "newActorRuns": 0,
+    "verifiedAtUtc": "2026-10-04T00:10:28.630079+00:00"
+  }
+}

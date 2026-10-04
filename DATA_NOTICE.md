@@ -16,7 +16,7 @@ endpoints on 2026-08-13:
 | Actor | `kamerozkan/dach-package-holiday-price-api` |
 | Actor ID | `wgrg8RIdKtTl3x5UT` |
 | Public | `true` |
-| Current latest build | `1.0.23`, build ID `cizRcopUm0qBzQUXu`, status `SUCCEEDED` |
+| Latest build at the August 13 audit | `1.0.23`, build ID `cizRcopUm0qBzQUXu`, status `SUCCEEDED` |
 | Public Store Example Tasks | 3 |
 | Public Example 01 | `XzYQCBdhxElKX9CMM`, `Compare package holidays from Berlin`, slug `compare-package-holidays-from-berlin` |
 | Public Example 02 | `1rqXwfhCgJoX6FH19`, `Compare operators for Antalya`, slug `compare-operators-for-antalya` |
@@ -128,3 +128,9 @@ Users are responsible for lawful, proportionate use and compliance with applicab
 ## Listing update on September 30, 2026
 
 The Store title, description and search metadata were checked against the owned Actor and synchronized with this repository. This documentation update does not alter executable code, input or output schemas, recorded test outputs, artifact hashes, billing or runtime builds. Existing examples retain their original dates and validation limits. A public listing is not evidence of successful output, network acceptance or an achieved search ranking.
+
+## Maintenance evidence on October 4, 2026
+
+[`maintenance-verification-2026-10-04.json`](maintenance-verification-2026-10-04.json) records offline validation of the Actor maintenance across all five providers. Negative/nonfinite required totals and malformed or reversed source calendar dates are rejected. Missing source dates and invalid optional monetary amounts remain null; valid numeric zero is preserved. Calendar-day validation does not validate the complete time/timezone suffix of a timestamp.
+
+The 92 author tests and 17 independent check groups contain synthetic local checks, without new provider calls, source fixtures or customer data in this repository. Separately, public `latest` build `1.0.25` / `9JKFZOpj5ssewuj93` compiled successfully and its server source hashes matched the reviewed package. No new runtime/source run was opened. Neither compilation nor these local tests demonstrates current provider availability, customer output or revenue impact. Pricing, input schema, transport, existing output projections and their historical provenance were not changed by this documentation preparation.

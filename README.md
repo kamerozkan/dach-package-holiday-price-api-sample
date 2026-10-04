@@ -29,7 +29,7 @@ contract in [`dataset_record.schema.json`](dataset_record.schema.json).
 At the 2026-08-13 verification, the Store exposed **three public Example
 Tasks**. Inputs 01, 02, and 03 are their exact inputs and use rolling dates.
 
-The current production build `1.0.23` passed an all-source comparison smoke.
+At the August 13, 2026 audit, build `1.0.23` passed an all-source comparison smoke.
 All five selected sources were healthy, including the recovered alltours
 adapter, and the Actor wrote three comparison rows from five normalized offers.
 Two isolated history runs also proved that the first observation generated one
@@ -37,6 +37,14 @@ Two isolated history runs also proved that the first observation generated one
 [`release_1_0_23_evidence.json`](release_1_0_23_evidence.json) and
 [`DATA_NOTICE.md`](DATA_NOTICE.md) for the exact run, dataset, and billing
 evidence.
+
+## Price and calendar maintenance on October 4, 2026
+
+The released maintenance validates normalized offers from TUI, DERTOUR, weg.de, ab-in-den-urlaub.de and alltours. Negative, nonfinite or nonnumeric required totals are rejected before offers can become the cheapest comparison. Invalid optional monetary amounts remain null. An explicitly supplied numeric zero is retained as a source value; it is not a booking or free-travel guarantee.
+
+Supplied malformed calendar dates and return-before-departure dates reject the affected offer. Missing source dates remain null; the Actor does not manufacture them. Calendar-day prefixes are checked, without claiming validation of an entire timestamp suffix.
+
+92 author tests and 17 independent check groups passed offline. Public `latest` build `1.0.25` (`9JKFZOpj5ssewuj93`) compiled successfully, and the server source hashes match the reviewed package. No new live source run was opened; current provider reachability and customer effect remain unverified. Existing examples and output projections retain their original dates and source evidence. See [`maintenance-verification-2026-10-04.json`](maintenance-verification-2026-10-04.json).
 
 ## Input examples
 

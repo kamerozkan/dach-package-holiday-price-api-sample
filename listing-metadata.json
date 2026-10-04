@@ -8,8 +8,17 @@
   "isPublic": true,
   "url": "https://apify.com/kamerozkan/dach-package-holiday-price-api",
   "checkedAt": "2026-09-30",
-  "changeScope": "listing metadata and sample documentation only",
-  "runtimeChanged": false,
+  "changeScope": "maintenance documentation and dated validation/publication evidence; listing fields retain the September 30 snapshot",
   "schemasChanged": false,
-  "examplesRegenerated": false
+  "examplesRegenerated": false,
+  "documentationUpdatedAt": "2026-10-04",
+  "maintenance": {
+    "evidenceFile": "maintenance-verification-2026-10-04.json",
+    "cloudPublication": "public latest 1.0.25 / 9JKFZOpj5ssewuj93 verified; build SUCCEEDED and server source hashes match",
+    "sourceReachability": "no new runtime/source run; remains unverified",
+    "customerEffect": "not measured",
+    "authorTestsPassed": 92,
+    "independentCheckGroupsPassed": 17,
+    "actorRuntimeChanged": true
+  }
 }
