@@ -1,0 +1,200 @@
+{
+  "checkedAtUtc": "2026-10-06T17:44:37.629665+00:00",
+  "actorId": "wgrg8RIdKtTl3x5UT",
+  "actorUrl": "https://apify.com/kamerozkan/dach-package-holiday-price-api",
+  "checkedLatestBuild": {
+    "buildId": "9JKFZOpj5ssewuj93",
+    "finishedAt": "2026-10-04T00:03:59.588Z",
+    "buildNumberInt": 10000025,
+    "buildNumber": "1.0.25"
+  },
+  "activePricing": {
+    "pricingModel": "PAY_PER_EVENT",
+    "isPriceChangeNotificationSuppressed": false,
+    "minimalMaxTotalChargeUsd": 0.02,
+    "startedAt": "2026-09-16T00:00:00.000Z",
+    "pricingPerEvent": {
+      "actorChargeEvents": {
+        "offer-emitted": {
+          "eventTitle": "Package offer",
+          "eventDescription": "One normalized package offer written to the dataset.",
+          "isOneTimeEvent": false,
+          "eventTieredPricingUsd": {
+            "FREE": {
+              "tieredEventPriceUsd": 0.002
+            },
+            "BRONZE": {
+              "tieredEventPriceUsd": 0.0018
+            },
+            "SILVER": {
+              "tieredEventPriceUsd": 0.0016
+            },
+            "GOLD": {
+              "tieredEventPriceUsd": 0.0014
+            },
+            "PLATINUM": {
+              "tieredEventPriceUsd": 0.0014
+            },
+            "DIAMOND": {
+              "tieredEventPriceUsd": 0.0014
+            }
+          },
+          "isPrimaryEvent": true
+        },
+        "successful-source-search": {
+          "eventTitle": "Successful source search",
+          "eventDescription": "One successful operator or departure-airport search.",
+          "isOneTimeEvent": false,
+          "eventPriceUsd": 0.015
+        },
+        "detail-enrichment": {
+          "eventTitle": "Detail enrichment",
+          "eventDescription": "One offer enriched with verified detail-page evidence.",
+          "isOneTimeEvent": false,
+          "eventPriceUsd": 0.004
+        },
+        "comparison-emitted": {
+          "eventTitle": "Hotel comparison",
+          "eventDescription": "One same-hotel or like-for-like comparison written.",
+          "isOneTimeEvent": false,
+          "eventPriceUsd": 0.002
+        },
+        "history-update": {
+          "eventTitle": "Price observation",
+          "eventDescription": "One new deduplicated price observation persisted.",
+          "isOneTimeEvent": false,
+          "eventPriceUsd": 0.0005
+        },
+        "airport-matrix-emitted": {
+          "eventTitle": "Airport comparison",
+          "eventDescription": "One departure-airport comparison row written.",
+          "isOneTimeEvent": false,
+          "eventPriceUsd": 0.003
+        },
+        "market-signal-emitted": {
+          "eventTitle": "Capacity signal",
+          "eventDescription": "One explainable market availability or price signal written.",
+          "isOneTimeEvent": false,
+          "eventTieredPricingUsd": {
+            "FREE": {
+              "tieredEventPriceUsd": 0.03
+            },
+            "BRONZE": {
+              "tieredEventPriceUsd": 0.027
+            },
+            "SILVER": {
+              "tieredEventPriceUsd": 0.024
+            },
+            "GOLD": {
+              "tieredEventPriceUsd": 0.021
+            },
+            "PLATINUM": {
+              "tieredEventPriceUsd": 0.021
+            },
+            "DIAMOND": {
+              "tieredEventPriceUsd": 0.021
+            }
+          }
+        },
+        "forecast-emitted": {
+          "eventTitle": "Buy or wait forecast",
+          "eventDescription": "One transparent buy or wait forecast written.",
+          "isOneTimeEvent": false,
+          "eventTieredPricingUsd": {
+            "FREE": {
+              "tieredEventPriceUsd": 0.03
+            },
+            "BRONZE": {
+              "tieredEventPriceUsd": 0.027
+            },
+            "SILVER": {
+              "tieredEventPriceUsd": 0.024
+            },
+            "GOLD": {
+              "tieredEventPriceUsd": 0.021
+            },
+            "PLATINUM": {
+              "tieredEventPriceUsd": 0.021
+            },
+            "DIAMOND": {
+              "tieredEventPriceUsd": 0.021
+            }
+          }
+        },
+        "alert-delivered": {
+          "eventTitle": "Alert delivered",
+          "eventDescription": "One webhook alert successfully delivered.",
+          "isOneTimeEvent": false,
+          "eventTieredPricingUsd": {
+            "FREE": {
+              "tieredEventPriceUsd": 0.05
+            },
+            "BRONZE": {
+              "tieredEventPriceUsd": 0.045
+            },
+            "SILVER": {
+              "tieredEventPriceUsd": 0.04
+            },
+            "GOLD": {
+              "tieredEventPriceUsd": 0.035
+            },
+            "PLATINUM": {
+              "tieredEventPriceUsd": 0.035
+            },
+            "DIAMOND": {
+              "tieredEventPriceUsd": 0.035
+            }
+          }
+        },
+        "apify-actor-start": {
+          "eventTitle": "Actor Start",
+          "eventDescription": "Charged when the Actor starts running. Number of events charged depends on Actor memory (one event per GB, minimum one event).",
+          "isOneTimeEvent": true,
+          "eventPriceUsd": 0.005
+        }
+      }
+    },
+    "createdAt": "2026-09-01T19:22:44.088Z",
+    "apifyMarginPercentage": 0.2,
+    "notifiedAboutFutureChangeAt": "2026-09-01T19:23:04.365Z",
+    "notifiedAboutChangeAt": "2026-09-16T00:05:56.350Z"
+  },
+  "pricingConfigurationChanged": false,
+  "newActorRuns": 0,
+  "newSourceObservations": false,
+  "newCustomerPaymentOrSatisfactionProven": false,
+  "historicalSampleFilesChanged": false,
+  "savedActivePricingHash": "40620c01af407eb64cfa2a42f62b2fbdd5aa0476a4dabb3fa54997c46dbcaafb",
+  "notes": "At the checked Free-tier price, each normalized offer costs $0.002. Each successful operator or departure-airport search costs $0.015; optional enrichment, history, comparison and alert features have separate events. Startup is $0.005 per GB with a minimum of one event; default 2 GB adds $0.01. Failed source searches have no successful-source-search event. Use the live Pricing tab and OUTPUT billing details for your plan and scope.",
+  "limits": [
+    "Publication must be verified separately",
+    "Billing/schema clarification is not source reachability or customer adoption evidence"
+  ],
+  "publishedLatestBuild": {
+    "id": "h2n6RsYTVhAorDs6z",
+    "buildNumber": "1.0.26",
+    "status": "SUCCEEDED",
+    "startedAt": "2026-10-06T18:10:04.747Z",
+    "finishedAt": "2026-10-06T18:11:02.788Z"
+  },
+  "cloudPublicationCompletedAtUtc": "2026-10-06T18:12:03.203683+00:00",
+  "publicLatestVerified": true,
+  "allFrozenSourceHashesVerified": true,
+  "sourceFileCountVerified": 42,
+  "sourceChangedFiles": [
+    ".actor/input_schema.json"
+  ],
+  "publishedReadmeSha256": "99fa945ca3e740fc2fa56d8b81d074aba16c93f7c1749433a343c80226a900f9",
+  "protectedMetadataUnchanged": true,
+  "envUnchanged": true,
+  "cloudReleaseEvidenceSha256": "1524dfd9f8e846ff8fe5bd132d28dfea2bfadac359c79daa5a67b7871ea3d82d",
+  "cloudSourceManifestSha256": "40f26614e7a01f05949b6a6986c6df28bb86e21c44e160823e6b31940d839cb0",
+  "cloudReadmeRepaired": true,
+  "storePublicationBlocked": false,
+  "publicationScope": "Verified cloud release and linked GitHub sample",
+  "inputSchemaSha256": "85c763ad85db311c937f9fc43d2d571d0360b8415ee7478ac89a5ac3998e07b2",
+  "inputSchemaDescriptionPropertiesChanged": [
+    "operators"
+  ],
+  "proposedReadmeSha256": "d7ed6b7b5584666a1339ca73f9908889185e1ca84b8f3fab9c9aef5f0fac31f9"
+}

@@ -134,3 +134,7 @@ The Store title, description and search metadata were checked against the owned 
 [`maintenance-verification-2026-10-04.json`](maintenance-verification-2026-10-04.json) records offline validation of the Actor maintenance across all five providers. Negative/nonfinite required totals and malformed or reversed source calendar dates are rejected. Missing source dates and invalid optional monetary amounts remain null; valid numeric zero is preserved. Calendar-day validation does not validate the complete time/timezone suffix of a timestamp.
 
 The 92 author tests and 17 independent check groups contain synthetic local checks, without new provider calls, source fixtures or customer data in this repository. Separately, public `latest` build `1.0.25` / `9JKFZOpj5ssewuj93` compiled successfully and its server source hashes matched the reviewed package. No new runtime/source run was opened. Neither compilation nor these local tests demonstrates current provider availability, customer output or revenue impact. Pricing, input schema, transport, existing output projections and their historical provenance were not changed by this documentation preparation.
+
+## October 6 billing-description clarification
+
+Only the public billing field description is reconciled with the saved active prices. No prices, validation constraints, defaults or runtime are changed. The check collected no new source data and proves no customer payment or satisfaction. Historical records are preserved.

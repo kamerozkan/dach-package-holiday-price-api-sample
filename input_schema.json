@@ -1,0 +1,664 @@
+{
+  "title": "DACH package holiday search",
+  "description": "Search live package-holiday offers with one input across supported German operators.",
+  "type": "object",
+  "schemaVersion": 1,
+  "additionalProperties": false,
+  "properties": {
+    "destination": {
+      "title": "Destination",
+      "type": "string",
+      "description": "Country, region, or city, for example Antalya, Türkische Riviera, Mallorca, or Hurghada.",
+      "editor": "textfield",
+      "default": "Antalya",
+      "prefill": "Antalya",
+      "example": "Antalya",
+      "minLength": 2,
+      "maxLength": 120
+    },
+    "startDate": {
+      "title": "Earliest departure",
+      "type": "string",
+      "description": "Beginning of the departure search window. Use YYYY-MM-DD or a relative value such as 8 weeks.",
+      "editor": "datepicker",
+      "dateType": "absoluteOrRelative",
+      "prefill": "8 weeks",
+      "example": "8 weeks",
+      "pattern": "^(?:\\d{4}-\\d{2}-\\d{2}|\\d+\\s*(?:day|week|month|year)s?)$",
+      "errorMessage": {
+        "pattern": "Use YYYY-MM-DD or a relative date such as 8 weeks."
+      }
+    },
+    "endDate": {
+      "title": "Latest departure",
+      "type": "string",
+      "description": "End of the departure search window. Use YYYY-MM-DD or a relative value such as 10 weeks.",
+      "editor": "datepicker",
+      "dateType": "absoluteOrRelative",
+      "prefill": "10 weeks",
+      "example": "10 weeks",
+      "pattern": "^(?:\\d{4}-\\d{2}-\\d{2}|\\d+\\s*(?:day|week|month|year)s?)$",
+      "errorMessage": {
+        "pattern": "Use YYYY-MM-DD or a relative date such as 10 weeks."
+      }
+    },
+    "nights": {
+      "title": "Nights",
+      "type": "integer",
+      "description": "Requested trip duration.",
+      "editor": "number",
+      "default": 7,
+      "minimum": 1,
+      "maximum": 42
+    },
+    "adults": {
+      "title": "Adults",
+      "type": "integer",
+      "description": "Number of adult travellers.",
+      "editor": "number",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 10
+    },
+    "childAges": {
+      "title": "Children's ages",
+      "type": "array",
+      "description": "Age of each child on departure. Leave empty when travelling without children.",
+      "editor": "json",
+      "default": [],
+      "maxItems": 8,
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 17
+      }
+    },
+    "departureAirports": {
+      "title": "Departure airports",
+      "type": "array",
+      "description": "Three-letter IATA codes, for example DUS, MUC, FRA. Offers that explicitly return a different airport are discarded and reported as a source-contract error.",
+      "editor": "stringList",
+      "default": [
+        "DUS"
+      ],
+      "prefill": [
+        "DUS"
+      ],
+      "example": [
+        "DUS"
+      ],
+      "minItems": 1,
+      "maxItems": 20,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z]{3}$"
+      }
+    },
+    "operators": {
+      "title": "Operators",
+      "type": "array",
+      "description": "Sources to query. Each successful operator or departure-airport search generates one successful-source-search event ($0.015), plus $0.002 per normalized offer row at the Free tier checked on 6 October 2026. Optional features and memory-based startup can add events. Failed searches have no successful-source-search event; live Pricing is authoritative.",
+      "editor": "select",
+      "default": [
+        "tui",
+        "dertour",
+        "weg",
+        "aidu",
+        "alltours"
+      ],
+      "minItems": 1,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "tui",
+          "dertour",
+          "weg",
+          "aidu",
+          "alltours"
+        ],
+        "enumTitles": [
+          "TUI Germany",
+          "DERTOUR Germany",
+          "weg.de",
+          "ab-in-den-urlaub.de",
+          "alltours"
+        ]
+      }
+    },
+    "outputMode": {
+      "title": "Output mode",
+      "type": "string",
+      "description": "Offers returns one row per source offer. Comparisons returns one row per GIATA hotel with the cheapest offer of every source side by side, including matchQuality that declares per dimension what was matched exactly and what was normalized.",
+      "editor": "select",
+      "default": "offers",
+      "enum": [
+        "offers",
+        "comparisons"
+      ],
+      "enumTitles": [
+        "Individual offers",
+        "Hotel comparisons"
+      ]
+    },
+    "comparisonMode": {
+      "title": "Comparison basis",
+      "type": "string",
+      "description": "Compare each source's cheapest offer for a hotel, or only packages with matching dates, duration, occupancy, airport, room class, and board class.",
+      "editor": "select",
+      "default": "lowest_offer_in_search_window",
+      "enum": [
+        "lowest_offer_in_search_window",
+        "like_for_like_package"
+      ],
+      "enumTitles": [
+        "Lowest offer in search window",
+        "Like-for-like package"
+      ]
+    },
+    "maxResultsPerOperator": {
+      "title": "Maximum results per operator",
+      "type": "integer",
+      "description": "Caps the number of normalized offers emitted by each selected operator.",
+      "editor": "number",
+      "default": 20,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "sort": {
+      "title": "Sort",
+      "type": "string",
+      "description": "Requests price ordering or the source's recommendation ordering.",
+      "editor": "select",
+      "default": "priceAsc",
+      "enum": [
+        "priceAsc",
+        "recommended"
+      ],
+      "enumTitles": [
+        "Lowest price first",
+        "Recommended"
+      ]
+    },
+    "includeRaw": {
+      "title": "Include raw source records",
+      "type": "boolean",
+      "description": "Useful for debugging but increases dataset size.",
+      "editor": "checkbox",
+      "default": false
+    },
+    "history": {
+      "title": "Price history",
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Persist deduplicated observations and optionally emit 90-day price series.",
+      "editor": "json",
+      "default": {
+        "enabled": false,
+        "storeName": "package-price-history",
+        "retentionDays": 90,
+        "observationIntervalHours": 24,
+        "emitSeries": true
+      },
+      "properties": {
+        "enabled": {
+          "title": "Enable history",
+          "description": "Persist deduplicated observations in the selected store.",
+          "type": "boolean",
+          "default": false
+        },
+        "storeName": {
+          "title": "Key-value store name",
+          "description": "Named store containing sharded history and derived state.",
+          "type": "string",
+          "default": "package-price-history",
+          "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$",
+          "minLength": 3,
+          "maxLength": 63
+        },
+        "retentionDays": {
+          "title": "Retention days",
+          "description": "Delete observations older than this rolling window.",
+          "type": "integer",
+          "default": 90,
+          "minimum": 7,
+          "maximum": 365
+        },
+        "observationIntervalHours": {
+          "title": "Deduplication interval (hours)",
+          "description": "Keep at most one observation per exact offer and time bucket.",
+          "type": "integer",
+          "default": 24,
+          "minimum": 1,
+          "maximum": 24
+        },
+        "emitSeries": {
+          "title": "Emit price series",
+          "description": "Write updated series records to the default dataset.",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "enrichment": {
+      "title": "Offer detail enrichment",
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optionally visit a bounded number of source offer pages to fill evidence-backed baggage, transfer, and flexible-cancellation fields. Successful lookups are cached.",
+      "editor": "json",
+      "default": {
+        "enabled": false,
+        "storeName": "package-offer-enrichment",
+        "ttlHours": 6,
+        "maxOffersPerSource": 3
+      },
+      "properties": {
+        "enabled": {
+          "title": "Enable enrichment",
+          "description": "Visit detail pages when list responses omit useful package inclusions.",
+          "type": "boolean",
+          "default": false
+        },
+        "storeName": {
+          "title": "Enrichment cache store",
+          "description": "Named key-value store used for bounded detail-response caching.",
+          "type": "string",
+          "default": "package-offer-enrichment",
+          "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$",
+          "minLength": 3,
+          "maxLength": 63
+        },
+        "ttlHours": {
+          "title": "Cache lifetime (hours)",
+          "description": "How long verified detail evidence may be reused.",
+          "type": "integer",
+          "default": 6,
+          "minimum": 1,
+          "maximum": 72
+        },
+        "maxOffersPerSource": {
+          "title": "Maximum enriched offers per source",
+          "description": "Hard per-search cap on detail-page lookups.",
+          "type": "integer",
+          "default": 3,
+          "minimum": 1,
+          "maximum": 10
+        }
+      }
+    },
+    "airportMatrix": {
+      "title": "Departure-airport matrix",
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Fan out one search per airport and emit comparable package prices by departure point.",
+      "editor": "json",
+      "default": {
+        "enabled": false,
+        "maxAirports": 8,
+        "concurrency": 3,
+        "requestBudget": 50,
+        "emitRows": true
+      },
+      "properties": {
+        "enabled": {
+          "title": "Enable airport matrix",
+          "description": "Run one isolated search per requested departure airport.",
+          "type": "boolean",
+          "default": false
+        },
+        "maxAirports": {
+          "title": "Maximum airports",
+          "description": "Reject matrix inputs exceeding this number of airports.",
+          "type": "integer",
+          "default": 8,
+          "minimum": 1,
+          "maximum": 20
+        },
+        "concurrency": {
+          "title": "Concurrent searches",
+          "description": "Maximum parallel source searches; capped for browser memory safety.",
+          "type": "integer",
+          "default": 3,
+          "minimum": 1,
+          "maximum": 4
+        },
+        "requestBudget": {
+          "title": "Maximum source searches",
+          "description": "Hard limit on operator and airport search combinations.",
+          "type": "integer",
+          "default": 50,
+          "minimum": 1,
+          "maximum": 500
+        },
+        "emitRows": {
+          "title": "Emit matrix records",
+          "description": "Write airport-matrix records to the default dataset.",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "signals": {
+      "title": "Capacity and price signals",
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Calculate explainable availability-narrowing and price-jump signals from stored observations.",
+      "editor": "json",
+      "default": {
+        "enabled": false,
+        "minimumSnapshots": 3,
+        "evidenceWindowDays": 14,
+        "emitRows": true
+      },
+      "properties": {
+        "enabled": {
+          "title": "Enable signals",
+          "description": "Calculate price and availability-narrowing signals from history.",
+          "type": "boolean",
+          "default": false
+        },
+        "minimumSnapshots": {
+          "title": "Minimum snapshots",
+          "description": "Minimum distinct time buckets required before scoring.",
+          "type": "integer",
+          "default": 3,
+          "minimum": 3,
+          "maximum": 30
+        },
+        "evidenceWindowDays": {
+          "title": "Evidence window (days)",
+          "description": "Rolling observation window used to calculate signals.",
+          "type": "integer",
+          "default": 14,
+          "minimum": 3,
+          "maximum": 90
+        },
+        "emitRows": {
+          "title": "Emit signal records",
+          "description": "Write market-signal records to the default dataset.",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "forecast": {
+      "title": "Buy/wait forecast",
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Generate an explainable informational recommendation from price trend, volatility, departure timing, and capacity signals.",
+      "editor": "json",
+      "default": {
+        "enabled": false,
+        "minimumObservations": 7,
+        "horizonDays": 7,
+        "emitRows": true
+      },
+      "properties": {
+        "enabled": {
+          "title": "Enable forecast",
+          "description": "Generate informational buy, wait, or neutral recommendations.",
+          "type": "boolean",
+          "default": false
+        },
+        "minimumObservations": {
+          "title": "Minimum observations",
+          "description": "Minimum series length required for a directional forecast.",
+          "type": "integer",
+          "default": 7,
+          "minimum": 3,
+          "maximum": 60
+        },
+        "horizonDays": {
+          "title": "Forecast horizon (days)",
+          "description": "Number of future days covered by the trend estimate.",
+          "type": "integer",
+          "default": 7,
+          "minimum": 1,
+          "maximum": 30
+        },
+        "emitRows": {
+          "title": "Emit forecast records",
+          "description": "Write forecast records to the default dataset.",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "reliability": {
+      "title": "Reliability controls",
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Per-source circuit breaker settings for repeated failures.",
+      "editor": "json",
+      "default": {
+        "circuitFailureThreshold": 3,
+        "circuitCooldownSeconds": 120
+      },
+      "properties": {
+        "circuitFailureThreshold": {
+          "title": "Failures before opening circuit",
+          "description": "Consecutive failures required to pause one source.",
+          "type": "integer",
+          "default": 3,
+          "minimum": 1,
+          "maximum": 20
+        },
+        "circuitCooldownSeconds": {
+          "title": "Circuit cooldown (seconds)",
+          "description": "Wait time before a paused source may be tried again.",
+          "type": "integer",
+          "default": 120,
+          "minimum": 10,
+          "maximum": 3600
+        }
+      }
+    },
+    "alerts": {
+      "title": "Webhook alerts",
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Send idempotent, cooldown-controlled price, capacity, and source-recovery notifications.",
+      "editor": "json",
+      "default": {
+        "enabled": false,
+        "webhookUrls": [],
+        "types": [
+          "price_drop",
+          "price_rise",
+          "availability_narrowing",
+          "source_recovery"
+        ],
+        "priceChangePercent": 5,
+        "capacityScore": 50,
+        "cooldownHours": 24,
+        "maxAlertsPerRun": 20,
+        "emitRows": true
+      },
+      "properties": {
+        "enabled": {
+          "title": "Enable alerts",
+          "description": "Send selected events to the configured webhook targets.",
+          "type": "boolean",
+          "default": false
+        },
+        "webhookUrls": {
+          "title": "Webhook URLs",
+          "description": "Up to five HTTPS endpoints that receive signed JSON payloads.",
+          "type": "array",
+          "editor": "stringList",
+          "default": [],
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^https://"
+          }
+        },
+        "types": {
+          "title": "Alert types",
+          "description": "Events eligible for webhook delivery.",
+          "type": "array",
+          "editor": "select",
+          "default": [
+            "price_drop",
+            "price_rise",
+            "availability_narrowing",
+            "source_recovery"
+          ],
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "price_drop",
+              "price_rise",
+              "availability_narrowing",
+              "source_recovery"
+            ],
+            "enumTitles": [
+              "Price drop",
+              "Price rise",
+              "Availability narrowing",
+              "Source recovery"
+            ]
+          }
+        },
+        "priceChangePercent": {
+          "title": "Price-change threshold (%)",
+          "description": "Minimum absolute price movement required for an alert.",
+          "type": "number",
+          "default": 5,
+          "minimum": 0.1,
+          "maximum": 100
+        },
+        "capacityScore": {
+          "title": "Capacity-score threshold",
+          "description": "Minimum availability-narrowing score required for an alert.",
+          "type": "number",
+          "default": 50,
+          "minimum": 1,
+          "maximum": 100
+        },
+        "cooldownHours": {
+          "title": "Alert cooldown (hours)",
+          "description": "Suppress repeated alerts for the same subject and target.",
+          "type": "integer",
+          "default": 24,
+          "minimum": 1,
+          "maximum": 720
+        },
+        "maxAlertsPerRun": {
+          "title": "Maximum alert candidates per run",
+          "description": "Hard safety cap before multiplying candidates by webhook targets.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 1,
+          "maximum": 100
+        },
+        "emitRows": {
+          "title": "Emit alert delivery rows",
+          "description": "Write redacted delivery outcomes to the default dataset.",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "alertSigningSecret": {
+      "title": "Alert signing secret",
+      "description": "Optional encrypted HMAC secret used to sign every webhook payload with SHA-256.",
+      "type": "string",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "destinationOverrides": {
+      "title": "Advanced destination IDs",
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional source-specific IDs. Use only when automatic destination resolution is ambiguous.",
+      "editor": "json",
+      "properties": {
+        "tuiId": {
+          "title": "TUI destination ID",
+          "type": "integer",
+          "description": "Numeric TUI GIATA city or region ID."
+        },
+        "tuiType": {
+          "title": "TUI destination type",
+          "type": "string",
+          "description": "Whether the TUI ID represents a city or region.",
+          "enum": [
+            "city",
+            "region"
+          ]
+        },
+        "dertourId": {
+          "title": "DERTOUR destination ID",
+          "type": "string",
+          "description": "DERTOUR geo ID returned by its destination service."
+        },
+        "wegId": {
+          "title": "weg.de destination ID",
+          "type": "string",
+          "description": "weg.de city, region, or country ID returned by its destination service."
+        },
+        "wegType": {
+          "title": "weg.de destination type",
+          "type": "string",
+          "description": "Whether the weg.de ID represents a city, region, or country.",
+          "enum": [
+            "city",
+            "region",
+            "country"
+          ]
+        },
+        "aiduId": {
+          "title": "ab-in-den-urlaub.de destination ID",
+          "type": "string",
+          "description": "Destination ID returned by the ab-in-den-urlaub.de autocomplete service."
+        },
+        "aiduType": {
+          "title": "ab-in-den-urlaub.de destination type",
+          "type": "string",
+          "description": "Whether the destination ID represents a city, region, or country.",
+          "enum": [
+            "city",
+            "region",
+            "country"
+          ]
+        },
+        "alltoursId": {
+          "title": "alltours destination ID",
+          "type": "string",
+          "description": "Node ID returned by the alltours destination tree."
+        },
+        "alltoursType": {
+          "title": "alltours destination type",
+          "type": "string",
+          "description": "Whether the alltours node represents a city, region, or country.",
+          "enum": [
+            "city",
+            "region",
+            "country"
+          ]
+        }
+      }
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Optional Apify Proxy fallback for browser-backed searches. WEG tries direct browser access first, and direct supplier API requests never use this proxy.",
+      "editor": "proxy",
+      "default": {
+        "useApifyProxy": false
+      }
+    }
+  },
+  "required": [
+    "destination",
+    "startDate",
+    "endDate",
+    "departureAirports"
+  ]
+}

@@ -19,6 +19,16 @@ two historical release-QA inputs, three privacy-minimized real output
 projections, machine-readable 1.0.23 release evidence, and the sample row
 contract in [`dataset_record.schema.json`](dataset_record.schema.json).
 
+## Current billing checked on October 6, 2026
+
+At the checked Free-tier price, each normalized offer costs $0.002. Each successful operator or departure-airport search costs $0.015; optional enrichment, history, comparison and alert features have separate events. Startup is $0.005 per GB with a minimum of one event; default 2 GB adds $0.01. Failed source searches have no successful-source-search event. Use the live Pricing tab and OUTPUT billing details for your plan and scope. Historical samples retain their original dates and do not prove current source access.
+
+See [`pricing-verification-2026-10-06.json`](pricing-verification-2026-10-06.json) for the saved event configuration and scope.
+
+## October 6, 2026 publication
+
+The owner release check confirmed public `latest` build `1.0.26` (`h2n6RsYTVhAorDs6z`), its complete frozen source hashes and unchanged protected Actor settings. This publication did not run a new scrape. Older snapshots and sample outputs below retain their original dates; they are not evidence of current source availability, customer payment or satisfaction.
+
 ## Start here
 
 1. Open the [Actor on Apify](https://apify.com/kamerozkan/dach-package-holiday-price-api).
@@ -460,3 +470,5 @@ flowchart LR
 - The public Store headline is not necessarily the complete run charge because source searches and optional features can be separate events.
 
 For exact provenance, audit evidence, redactions, and pricing limits, read [`DATA_NOTICE.md`](DATA_NOTICE.md).
+
+The current [`input_schema.json`](input_schema.json) includes the corrected billing field descriptions; input types, defaults and validation constraints were preserved.
